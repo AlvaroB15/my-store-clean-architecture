@@ -1,10 +1,10 @@
 const express = require("express");
-const routesApi = require("./src/routes");
+const routesApi = require("./routes");
 const cors = require("cors");
-const {errorHandler, logErrors, boomErrorHandler} = require("./src/middlewares/errorHandler");
+const {errorHandler, logErrors, boomErrorHandler} = require("./middlewares/errorHandler");
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 const whiteList = ["http://localhost:3000", "https://myapp.com"];
 const options = {
@@ -21,7 +21,7 @@ const options = {
 app.use(express.json());
 app.use(cors(options));
 
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
   res.send("Hola mi server en express");
 });
 
